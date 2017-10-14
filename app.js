@@ -50,6 +50,9 @@ rl.on('close', () => {
         value.change = value.popu15 / value.popu10;
     }
     // console.log(map);
+
+    console.log('人が増えた割合のランキング');
+
     const rankingArray = Array.from(map).sort((pair1, pair2) => {
         return pair2[1].change - pair1[1].change;
     });
@@ -58,5 +61,15 @@ rl.on('close', () => {
         return pair[0] + ': ' + pair[1].popu10 + '=>' + pair[1].popu15 + ' 変化率:' + pair[1].change;
     });
     console.log(rankingStrings);
+
+    console.log('人が減った割合のランキング');
+
+    const rankingAscArray = Array.from(map).sort((pair1, pair2) => {
+        return pair1[1].change - pair2[1].change;
+    });
+    const rankingAscStrings = rankingAscArray.map((pair, i) => {
+        return  (i + 1)+ '位 ' + pair[0] + ': ' + pair[1].popu10 + '=>' + pair[1].popu15 + ' 変化率:' + pair[1].change;
+    });
+    console.log(rankingAscStrings);
 });
 
